@@ -64,7 +64,10 @@ meanstd_allData <- allData[, c(1,2,grep(".*mean.*|.*std.*",
 ##      data set with the average of each variable for each activity and 
 ##      each subject.
 meltalldata <- melt(meanstd_allData, id = c("subject", "activity"))
+
 ## using dcast function casting mean on subject and activity by variable.
 dcastdata <- dcast(meltalldata, subject + activity ~ variable, mean)
+
+## writing the tidied data to an output file called combinedData.txt
 outfile <- "./data/combinedData.txt"
 write.table(dcastdata, file = outfile, sep = " ", col.names = TRUE )
